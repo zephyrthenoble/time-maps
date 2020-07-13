@@ -8,29 +8,14 @@ from twython import Twython
 from colour import Color
 
 
-def my_secrets():  # store your twitter codes
 
-    d = {}
-    d["APP_KEY"] = "O17AbV1eqmbnbPFv0r9yjLzEL"
-    d["APP_SECRET"] = "SJiMvks1mwGqbX1PSkhQWRV5FQXqxhrcoBRaHy5H26eEdq9wS8"
-    d["my_access_token_key"] = "807227574-CPr89uEHp1EKI7mcaSwdLdhFXAZ1W0kVhRSP48ZA"
-    d["my_access_token_secret"] = "0PywOTj0wHVB84OjqPN5XS9NBUJy4yyNRrstzfsHjNcjO"
+def twitter_auth2(
+    app_key, app_secret
+):  # for Twython authentication
 
-    return d
-
-
-def twitter_auth2():  # for Twython authentication
-
-    secrets = my_secrets()
-
-    APP_KEY = secrets["APP_KEY"]
-    APP_SECRET = secrets["APP_SECRET"]
-    my_access_token_key = secrets["my_access_token_key"]
-    my_access_token_secret = secrets["my_access_token_secret"]
-
-    twitter = Twython(APP_KEY, APP_SECRET, oauth_version=2)
+    twitter = Twython(app_key, app_secret, oauth_version=2)
     ACCESS_TOKEN = twitter.obtain_access_token()
-    twitter = Twython(APP_KEY, access_token=ACCESS_TOKEN)
+    twitter = Twython(app_key, access_token=ACCESS_TOKEN)
 
     return twitter
 
@@ -45,12 +30,12 @@ def get_dt(t):  # converts a twitter time string to a datetime object
 
 
 def grab_tweets(
-    name_to_get,
+    name_to_get, app_key, app_secret
 ):  # download a user's twitter timeline, returning a list of tweets
 
     print("downloading tweets:")
 
-    twitter = twitter_auth2()
+    twitter = twitter_auth2(app_key, app_secret)
     first = twitter.get_user_timeline(screen_name=name_to_get, count=1)
 
     lis = [first[0]["id"]]  # list of tweet id's
@@ -274,9 +259,9 @@ def analyze_tweet_times(name_to_get, all_tweets, HEAT, save_location="./", title
     assert path.isdir(save_location)
     if save_location.endswith("/"):
         save_location = save_location[:-1]
-    
+
     if title == "":
-        title=name_to_get
+        title = name_to_get
 
     all_tweets = all_tweets[
         ::-1
