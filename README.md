@@ -1,3 +1,5 @@
+Original README:
+
 This repository contains three python files for creating time maps and downloading tweets. The python files require a few packages. See below for details. To download tweets, you will need to set up your own Twitter account and paste the credentials into the top of tm_tools.py.
 
 Post cool time maps to Twitter!  #time_map_viz
@@ -14,3 +16,9 @@ For a quick read on time maps, check out
 [District Data Labs] (https://districtdatalabs.silvrback.com/time-maps-visualizing-discrete-events-across-many-timescales).
 
 I also wrote a longer [article] (http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7363824) with more in-depth examples and connections to probability.
+
+
+----------------------
+
+Updates:
+13-07-2020 Now works with Python 3
