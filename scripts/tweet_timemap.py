@@ -1,12 +1,11 @@
 #! /usr/local/bin/python  -*- coding: UTF-8 -*-
 
-import tm_tools
-
 ## specify a twitter username and whether you want a heated time map or a normal time map
 ## an eps file will be saved with the same name as the twitter username
 ## the axes are automatically scaled logarithmically.
 import sys
 
+import tm_tools
 
 name_to_get = sys.argv[1]
 HEAT = int(sys.argv[2])
